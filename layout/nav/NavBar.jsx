@@ -39,9 +39,8 @@ function NavBar({
                 onClick={toggleLeft}
               >
                 <i
-                  className={`fas fa-caret-square-${
-                    isToggled ? 'left' : 'right'
-                  }`}
+                  className={`fas fa-caret-square-${isToggled ? 'left' : 'right'
+                    }`}
                 ></i>
               </NavLink>
             </NavItem>
@@ -81,7 +80,7 @@ function NavBar({
             <DropdownToggle caret nav className="text-secondary">
               <NavbarText className="align-self-center text-left font-weight-bold">
                 <img
-                  src="/images/profile2.jpg"
+                  src="/images/profile3.jpg"
                   className="border rounded-circle img-42 img-fluid mr-1"
                 />
                 John Doe

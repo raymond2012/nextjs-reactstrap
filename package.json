@@ -12,23 +12,24 @@
   "license": "Unlicense",
   "author": {
     "name": "Defrian Yarfi",
-    "email": "dyarfi20@gmail.com",
+    "email": "defrian.yarfi@gmail.com",
     "url": "https://dyarfi.github.io/"
   },
   "contributors": [
     "defrian <dyarfi20@gmail.com> (https://dyarfi.github.io/)"
   ],
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@zeit/next-sass": "^1.0.1",
+    "autoprefixer": "^9.8.6",
     "bootstrap": "^4.4.1",
     "cssnano": "^4.1.10",
-    "next": "9.3.2",
+    "next": "^9.5.1",
     "next-redux-wrapper": "^5.0.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
