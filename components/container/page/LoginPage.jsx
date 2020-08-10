@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
+import Router from 'next/router'
 import {
   Card,
   CardBody,
@@ -12,10 +13,33 @@ import {
 const LoginPage = memo(props => {
   const { isOpen, toggle } = props;
 
+  const [loginError, setLoginError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch('https://api-uat.dress-as.com:4460/vers/v1/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((r) => {
+        console.log(r.status);
+        if (r.status === 200) {
+          Router.push('/')
+        }
+      })
+  }
   return (
     <Card className="w-25 box-shadow">
       <CardBody>
-        <Form action="/page/profile" method="POST">
+        <Form onSubmit={handleSubmit} method="POST">
           <fieldset>
             <legend className="text-primary bg-gradient-primary font-weight-bold uppercase">
               <h3 className="mt-2 ml-3 text-light text-center">Login</h3>
@@ -24,9 +48,11 @@ const LoginPage = memo(props => {
               <Label for="exampleInputEmail3">Email address</Label>
               <Input
                 type="email"
+                name="email"
                 className="form-control"
                 id="exampleInputEmail3"
                 aria-describedby="emailHelp"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <small id="emailHelp" className="form-text text-muted"></small>
             </FormGroup>
@@ -34,8 +60,10 @@ const LoginPage = memo(props => {
               <Label for="exampleInputPassword3">Password</Label>
               <Input
                 type="password"
+                name="password"
                 className="form-control"
                 id="exampleInputPassword3"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormGroup>
             <FormGroup check>
