@@ -80,7 +80,7 @@ function NavBar({
             <DropdownToggle caret nav className="text-secondary">
               <NavbarText className="align-self-center text-left font-weight-bold">
                 <img
-                  src="/images/profile.jpg"
+                  src="/images/profile2.jpg"
                   className="border rounded-circle img-42 img-fluid mr-1"
                 />
                 John Doe

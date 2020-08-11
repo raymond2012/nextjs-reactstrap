@@ -1,6 +1,8 @@
 import React, { memo, useState } from 'react';
 import Router from 'next/router'
+import Cookie from 'js-cookie';
 import {
+  Alert,
   Card,
   CardBody,
   Form,
@@ -30,10 +32,23 @@ const LoginPage = memo(props => {
       }),
     })
       .then((r) => {
-        console.log(r.status);
-        if (r.status === 200) {
-          Router.push('/')
+        console.log(r);
+        return r.json();
+      })
+      .then((data) => {
+        // setCookie('token', 'barear ' + )
+        if (data && data.error) {
+          console.log(data.error);
+          setLoginError(data.error.message);
         }
+        if (data && data.token) {
+          //set cookie
+          console.log((data.token))
+          Cookie.set('token', "bearer " + data.token, { expires: 2 });
+          Router.push('/');
+        }
+      }).catch((err) => {
+        console.log(err);
       })
   }
   return (
@@ -65,16 +80,9 @@ const LoginPage = memo(props => {
                 id="exampleInputPassword3"
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </FormGroup>
-            <FormGroup check>
-              <Input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck3"
-              />
-              <Label check for="exampleCheck3">
-                Check me out
-              </Label>
+              <Alert color="light">
+                {loginError}
+              </Alert>
             </FormGroup>
           </fieldset>
           <Button color="primary" block size="lg" className="mt-2">

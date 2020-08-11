@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import Cookie from 'js-cookie'
 import MainLayout from '../layout/MainLayout';
 import HomeContainer from '../components/container/HomeContainer';
 import HeadDefault from '../layout/head/HeadDefault';
